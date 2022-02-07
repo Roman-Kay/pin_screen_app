@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../models/numbers.dart';
+import '../models/pin_container.dart';
+
 class PinScreen extends StatefulWidget {
   const PinScreen({Key? key}) : super(key: key);
   @override
@@ -10,15 +13,18 @@ class _PinScreenState extends State<PinScreen> {
   int _counter = 0;
   void _incrementCounter() {
     setState(() {
-      _counter++;
+      _counter > 3 ? () {} : _counter++;
     });
   }
 
   void _decreaseCounter() {
     setState(() {
-      _counter--;
+      _counter == 0 ? () {} : _counter--;
     });
   }
+
+  double width = 24;
+  final color = const Color.fromARGB(255, 10, 207, 17);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +37,7 @@ class _PinScreenState extends State<PinScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 18),
             child: Row(
               children: [
-                Expanded(child: SizedBox()),
+                const Expanded(child: SizedBox()),
                 IconButton(
                   onPressed: null,
                   icon: Image.asset("icons/question.png"),
@@ -48,48 +54,20 @@ class _PinScreenState extends State<PinScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                height: 28,
-                width: 28,
-                decoration: BoxDecoration(
-                    color: _counter > 0
-                        ? const Color.fromARGB(255, 10, 207, 17)
-                        : Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.black.withOpacity(0.2))),
+              PinContainer(
+                color: _counter > 0 ? color : Colors.white,
               ),
-              const SizedBox(width: 24),
-              Container(
-                height: 28,
-                width: 28,
-                decoration: BoxDecoration(
-                    color: _counter > 1
-                        ? const Color.fromARGB(255, 10, 207, 17)
-                        : Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.black.withOpacity(0.2))),
+              SizedBox(width: width),
+              PinContainer(
+                color: _counter > 1 ? color : Colors.white,
               ),
-              const SizedBox(width: 24),
-              Container(
-                height: 28,
-                width: 28,
-                decoration: BoxDecoration(
-                    color: _counter > 2
-                        ? const Color.fromARGB(255, 10, 207, 17)
-                        : Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.black.withOpacity(0.2))),
+              SizedBox(width: width),
+              PinContainer(
+                color: _counter > 2 ? color : Colors.white,
               ),
-              const SizedBox(width: 24),
-              Container(
-                height: 28,
-                width: 28,
-                decoration: BoxDecoration(
-                    color: _counter > 3
-                        ? const Color.fromARGB(255, 10, 207, 17)
-                        : Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.black.withOpacity(0.2))),
+              SizedBox(width: width),
+              PinContainer(
+                color: _counter > 3 ? color : Colors.white,
               ),
             ],
           ),
@@ -101,97 +79,52 @@ class _PinScreenState extends State<PinScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextButton(
-                        onPressed: _counter > 3 ? () {} : _incrementCounter,
-                        child: const Text(
-                          '1',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 48,
-                              fontWeight: FontWeight.w200),
-                        )),
-                    TextButton(
-                        onPressed: _counter > 3 ? () {} : _incrementCounter,
-                        child: const Text(
-                          '2',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 48,
-                              fontWeight: FontWeight.w200),
-                        )),
-                    TextButton(
-                        onPressed: _counter > 3 ? () {} : _incrementCounter,
-                        child: const Text(
-                          '3',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 48,
-                              fontWeight: FontWeight.w200),
-                        )),
+                    NumberButton(
+                      number: '1',
+                      onPressed: _incrementCounter,
+                    ),
+                    NumberButton(
+                      number: '2',
+                      onPressed: _incrementCounter,
+                    ),
+                    NumberButton(
+                      number: '3',
+                      onPressed: _incrementCounter,
+                    ),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextButton(
-                        onPressed: _counter > 3 ? () {} : _incrementCounter,
-                        child: const Text(
-                          '4',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 48,
-                              fontWeight: FontWeight.w200),
-                        )),
-                    TextButton(
-                        onPressed: _counter > 3 ? () {} : _incrementCounter,
-                        child: const Text(
-                          '5',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 48,
-                              fontWeight: FontWeight.w200),
-                        )),
-                    TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          '6',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 48,
-                              fontWeight: FontWeight.w200),
-                        )),
+                    NumberButton(
+                      number: '4',
+                      onPressed: _incrementCounter,
+                    ),
+                    NumberButton(
+                      number: '5',
+                      onPressed: _incrementCounter,
+                    ),
+                    NumberButton(
+                      number: '6',
+                      onPressed: _incrementCounter,
+                    ),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextButton(
-                        onPressed: _counter > 3 ? () {} : _incrementCounter,
-                        child: const Text(
-                          '7',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 48,
-                              fontWeight: FontWeight.w200),
-                        )),
-                    TextButton(
-                        onPressed: _counter > 3 ? () {} : _incrementCounter,
-                        child: const Text(
-                          '8',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 48,
-                              fontWeight: FontWeight.w200),
-                        )),
-                    TextButton(
-                        onPressed: _counter > 3 ? () {} : _incrementCounter,
-                        child: const Text(
-                          '9',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 48,
-                              fontWeight: FontWeight.w200),
-                        )),
+                    NumberButton(
+                      number: '7',
+                      onPressed: _incrementCounter,
+                    ),
+                    NumberButton(
+                      number: '8',
+                      onPressed: _incrementCounter,
+                    ),
+                    NumberButton(
+                      number: '9',
+                      onPressed: _incrementCounter,
+                    ),
                   ],
                 ),
                 Padding(
@@ -206,33 +139,20 @@ class _PinScreenState extends State<PinScreen> {
                             color: Colors.black,
                             size: 35,
                           )),
-                      TextButton(
-                          onPressed: _counter > 3 ? () {} : _incrementCounter,
-                          child: const Text(
-                            '0',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 48,
-                                fontWeight: FontWeight.w200),
-                          )),
+                      NumberButton(
+                        number: '0',
+                        onPressed: _incrementCounter,
+                      ),
                       IconButton(
-                          onPressed: _counter == 0 ? () {} : _decreaseCounter,
-                          icon: Image.asset("icons/backspace.png")
-                          // icon: const Icon(
-                          //   Icons.backspace_outlined,
-                          //   color: Colors.black,
-                          //   size: 35,
-                          // ),
-                          ),
+                          onPressed: _decreaseCounter,
+                          icon: Image.asset("icons/backspace.png")),
                     ],
                   ),
                 ),
               ],
             ),
           ),
-          SizedBox(
-            height: 25,
-          )
+          const SizedBox(height: 25)
         ],
       ),
     );
